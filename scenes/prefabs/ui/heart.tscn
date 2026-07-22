@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cef7vq5alew06"]
+
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_ojurv"]
+[ext_resource type="Script" uid="uid://c2kpthtkjvhvm" path="res://scenes/prefabs/ui/heart.gd" id="1_qquft"]
+
+[node name="hearts" type="Control" unique_id=86800923]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 60.0
+offset_bottom = 60.0
+script = ExtResource("1_qquft")
+
+[node name="hearts" type="TextureRect" parent="." unique_id=1331409958]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 55.0
+offset_bottom = 55.0
+texture = ExtResource("1_ojurv")
+expand_mode = 1
+
+[node name="hearts2" type="TextureRect" parent="." unique_id=1051798730]
+z_index = -1
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("1_ojurv")
+expand_mode = 1
