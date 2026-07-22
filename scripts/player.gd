@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
 @onready var timer: Timer = $Timer
+@onready var stun_timer: Timer = $stunTimer
 @onready var attack_hitbox: Area2D = $attack_hitbox
 @onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
 
 const movement_speed = 100;
 
 var direction = Vector2(1, 0);
+var knockback = Vector2.ZERO;
+var stunned = false;
 
 
 func _physics_process(delta: float) -> void:
@@ -15,20 +18,26 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var directionX := Input.get_axis("ui_left", "ui_right")
 	var directionY := Input.get_axis("ui_up", "ui_down")
-	if directionX:
-		velocity.x = directionX * movement_speed
-		direction.x = directionX;
-	else:
-		velocity.x = move_toward(velocity.x, 0, movement_speed)
-		if(directionY != 0):
-			direction.x = 0;
-	if directionY:
-		velocity.y = directionY * movement_speed
-		direction.y = directionY;
-	else:
-		velocity.y = move_toward(velocity.y, 0, movement_speed)
-		if(directionX != 0):
-			direction.y = 0;
+	if(not stunned):
+		if directionX:
+			velocity.x = directionX * movement_speed
+			direction.x = directionX;
+		else:
+			velocity.x = move_toward(velocity.x, 0, movement_speed)
+			if(directionY != 0):
+				direction.x = 0;
+		if directionY:
+			velocity.y = directionY * movement_speed
+			direction.y = directionY;
+		else:
+			velocity.y = move_toward(velocity.y, 0, movement_speed)
+			if(directionX != 0):
+				direction.y = 0;
+		
+	if(not knockback.is_zero_approx()):
+		velocity += knockback;
+		knockback *= 0.5;
+		velocity *= 0.8
 	
 	
 	if(attack_hitbox.active):
@@ -44,7 +53,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func tryAttack():
-	if(timer.is_stopped()):
+	if(timer.is_stopped() and not stunned):
 		timer.start();
 	else:
 		var tween = create_tween();
@@ -59,3 +68,17 @@ func attack():
 func _on_timer_timeout() -> void:
 	attack();
 	
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if(body.is_in_group("Enemy")):
+		PlayerData.health -= 1;
+		
+		stunned = true;
+		stun_timer.start();
+		knockback = Vector2.from_angle(body.get_angle_to(position)) * 200;
+		print(knockback);
+
+
+func _on_stun_timer_timeout() -> void:
+	stunned = false;

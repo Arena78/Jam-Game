@@ -420,7 +420,7 @@ tile_set = SubResource("TileSet_jq8tk")
 
 [node name="player" parent="." unique_id=821665466 instance=ExtResource("2_nsrm0")]
 z_index = 1
-position = Vector2(308, 227)
+position = Vector2(231, 169)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1896290860]
 zoom = Vector2(3, 3)

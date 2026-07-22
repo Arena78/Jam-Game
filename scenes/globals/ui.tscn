@@ -46,7 +46,7 @@ offset_top = -27.0
 offset_bottom = 27.0
 grow_horizontal = 2
 
-[node name="BoxContainer2" type="BoxContainer" parent="." unique_id=1703910760]
+[node name="health_container" type="BoxContainer" parent="." unique_id=1703910760]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -58,12 +58,12 @@ grow_horizontal = 2
 offset_transform_enabled = true
 theme_override_constants/separation = 23
 
-[node name="hearts" parent="BoxContainer2" unique_id=1048153052 instance=ExtResource("3_t1p0u")]
+[node name="hearts" parent="health_container" unique_id=1048153052 instance=ExtResource("3_t1p0u")]
 custom_minimum_size = Vector2(57.345, 0)
 layout_mode = 2
 
-[node name="hearts2" parent="BoxContainer2" unique_id=982903367 instance=ExtResource("3_t1p0u")]
+[node name="hearts2" parent="health_container" unique_id=982903367 instance=ExtResource("3_t1p0u")]
 layout_mode = 2
 
-[node name="hearts3" parent="BoxContainer2" unique_id=86800923 instance=ExtResource("3_t1p0u")]
+[node name="hearts3" parent="health_container" unique_id=86800923 instance=ExtResource("3_t1p0u")]
 layout_mode = 2
