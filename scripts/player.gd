@@ -7,7 +7,6 @@ extends CharacterBody2D
 
 const movement_speed = 100;
 
-var direction = Vector2(1, 0);
 var knockback = Vector2.ZERO;
 var stunned = false;
 
@@ -16,23 +15,17 @@ func _physics_process(delta: float) -> void:
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var directionX := Input.get_axis("ui_left", "ui_right")
-	var directionY := Input.get_axis("ui_up", "ui_down")
+	var directionX := Input.get_axis("left", "right")
+	var directionY := Input.get_axis("up", "down")
 	if(not stunned):
 		if directionX:
 			velocity.x = directionX * movement_speed
-			direction.x = directionX;
 		else:
 			velocity.x = move_toward(velocity.x, 0, movement_speed)
-			if(directionY != 0):
-				direction.x = 0;
 		if directionY:
 			velocity.y = directionY * movement_speed
-			direction.y = directionY;
 		else:
 			velocity.y = move_toward(velocity.y, 0, movement_speed)
-			if(directionX != 0):
-				direction.y = 0;
 		
 	if(not knockback.is_zero_approx()):
 		velocity += knockback;
@@ -41,15 +34,16 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if(attack_hitbox.active):
-		attack_hitbox.position = direction * 16;
+		attack_hitbox.position = Vector2.from_angle(get_angle_to(get_global_mouse_position())) * 16;
 	else: attack_hitbox.position = Vector2(0, 0);
 	
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		tryAttack();
 		
 		
 	texture_progress_bar.value = (timer.time_left / timer.wait_time) * 100;
 
+	
 	move_and_slide()
 	
 func tryAttack():
