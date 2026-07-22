@@ -5,6 +5,8 @@
 
 [node name="GameMain" type="Node2D" unique_id=525167573]
 
-[node name="ui" parent="." unique_id=1436271836 instance=ExtResource("2_by607")]
-
 [node name="level" parent="." unique_id=1973902866 instance=ExtResource("1_lhpjk")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1476683087]
+
+[node name="ui" parent="CanvasLayer" unique_id=1436271836 instance=ExtResource("2_by607")]
