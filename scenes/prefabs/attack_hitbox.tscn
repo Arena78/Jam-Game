@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://d14eb3f4cdeli" path="res://scripts/attack_hitbox.gd" id="1_v8v5g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xd07"]
-size = Vector2(16, 16)
+size = Vector2(15, 15)
 
-[node name="attack_hitbox" type="Area2D" unique_id=1244579918]
+[node name="attack_hitbox" type="Area2D" unique_id=1244579918 groups=["Cutting Tool"]]
 script = ExtResource("1_v8v5g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1124818511]

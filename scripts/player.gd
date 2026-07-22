@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 const movement_speed = 150;
 
+var direction = Vector2(1, 0);
+
 
 func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
@@ -14,20 +16,24 @@ func _physics_process(delta: float) -> void:
 	var directionY := Input.get_axis("ui_up", "ui_down")
 	if directionX:
 		velocity.x = directionX * movement_speed
+		direction.x = directionX;
 	else:
 		velocity.x = move_toward(velocity.x, 0, movement_speed)
+		if(directionY != 0):
+			direction.x = 0;
 	if directionY:
 		velocity.y = directionY * movement_speed
+		direction.y = directionY;
 	else:
 		velocity.y = move_toward(velocity.y, 0, movement_speed)
+		if(directionX != 0):
+			direction.y = 0;
 	
 	
-	if(directionX != 0):
-		attack_hitbox.position.x = directionX * 16;
-	elif(directionY != 0): attack_hitbox.position.x = 0;
-	if(directionY != 0):
-		attack_hitbox.position.y = directionY * 16; 
-	elif(directionX != 0): attack_hitbox.position.y = 0;
+	if(attack_hitbox.active):
+		attack_hitbox.position = direction * 16;
+	else: attack_hitbox.position = Vector2(0, 0);
+	
 	if Input.is_action_just_pressed("ui_accept"):
 		tryAttack();
 		
