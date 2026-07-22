@@ -28,11 +28,13 @@ window/stretch/aspect="expand"
 
 "Cutting Tool"=""
 Cuttable=""
+Enemy=""
 
 [layer_names]
 
 2d_physics/layer_1="Normal"
 2d_physics/layer_2="Enemy Hurtbox"
+2d_physics/layer_3="Player"
 
 [physics]
 
