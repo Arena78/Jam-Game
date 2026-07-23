@@ -33,6 +33,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	state_machine.physics_process(delta)
 	_update_cooldown_bar()
+	
+	print(active_state);
+	print(buffer_slash)
 
 
 # state methods — called by StateMachine via convention
@@ -104,6 +107,8 @@ func state_slash2_enter() -> void:
 	buffer_slash = false
 	combo_step = 2
 	velocity = Vector2.ZERO
+	slash_timer.wait_time = 0.5
+	slash_timer.start()
 	_perform_attack()
 
 
@@ -199,10 +204,11 @@ func _on_died() -> void:
 
 
 func _on_health_changed(old_value: float, new_value: float, max_value: float) -> void:
-	if new_value < old_value:
-		var tween = create_tween()
-		cooldown_bar.tint_progress = Color(1.0, 0.0, 0.0)
-		tween.tween_property(cooldown_bar, "tint_progress", Color(1.0, 1.0, 1.0), 1.0)
+	pass
+	#if new_value < old_value:
+	#	var tween = create_tween()
+	#	cooldown_bar.tint_progress = Color(1.0, 0.0, 0.0)
+	#	tween.tween_property(cooldown_bar, "tint_progress", Color(1.0, 1.0, 1.0), 1.0)
 
 
 func _on_slash_timer_timeout() -> void:
@@ -231,10 +237,11 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 # helpers
 
 func _update_cooldown_bar() -> void:
-	if slash_timer.is_stopped():
-		cooldown_bar.value = 0.0
-	else:
-		cooldown_bar.value = (slash_timer.time_left / slash_timer.wait_time) * 100.0
+	pass
+	#if slash_timer.is_stopped():
+	#	cooldown_bar.value = 0.0
+	#else:
+	#	cooldown_bar.value = (slash_timer.time_left / slash_timer.wait_time) * 100.0
 
 
 func _refresh_skills() -> void:
