@@ -69,11 +69,11 @@ func _refresh_all_skill_icons() -> void:
 		if not skill_res:
 			continue
 		
-		var icon = SkillCircleIcon.new()
-		icon.skill = skill_res
-		icon.slot_index = i
-		skill_container.add_child(icon)
-		_skill_icons[i] = icon
+		#var icon = SkillCircleIcon.new()
+		#icon.skill = skill_res
+		#icon.slot_index = i
+		#skill_container.add_child(icon)
+		#_skill_icons[i] = icon
 
 
 ## Called when a skill timer starts.
