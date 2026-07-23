@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dyc3suf0e7he0"]
 
-[ext_resource type="Script" uid="uid://c5s18xw3yrsqx" path="res://entities/enemies/enemy_waddler.gd" id="1_55178"]
+[ext_resource type="Script" uid="uid://c5s18xw3yrsqx" path="res://scripts/entities/enemies/enemy_waddler.gd" id="1_55178"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_3huk5"]
-[ext_resource type="Script" path="res://entities/components/health_component.gd" id="3"]
-[ext_resource type="Script" path="res://entities/components/movement_component.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/entities/components/health_component.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/entities/components/movement_component.gd" id="4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3xd07"]
 size = Vector2(16, 16)

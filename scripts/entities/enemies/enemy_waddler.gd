@@ -1,7 +1,7 @@
 # enemy_waddler.gd
 # simple patrolling enemy that bounces off walls.
 # extends base_enemy for health/combat, adds waddler-specific movement.
-extends "res://entities/enemies/base_enemy.gd"
+extends "res://scripts/entities/enemies/base_enemy.gd"
 
 ## Initial patrol direction.
 @export var initial_direction: Vector2 = Vector2(1.0, 0.0)

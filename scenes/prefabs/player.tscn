@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://c4c30da2f5eb5"]
 
-[ext_resource type="Script" uid="uid://c3ubxpp10k6x6" path="res://entities/player/player.gd" id="1_tou0u"]
+[ext_resource type="Script" uid="uid://c3ubxpp10k6x6" path="res://scripts/entities/player/player.gd" id="1_tou0u"]
 [ext_resource type="PackedScene" uid="uid://bxi372o7q3eh1" path="res://scenes/prefabs/attack_hitbox.tscn" id="3_n0leu"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="4_8cdkg"]
-[ext_resource type="Script" path="res://core/StateMachine.gd" id="5"]
-[ext_resource type="Script" path="res://entities/components/health_component.gd" id="6"]
-[ext_resource type="Script" path="res://entities/components/movement_component.gd" id="7"]
-[ext_resource type="Script" path="res://entities/components/combat_component.gd" id="8"]
+[ext_resource type="Script" path="res://scripts/core/StateMachine.gd" id="5"]
+[ext_resource type="Script" path="res://scripts/entities/components/health_component.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/entities/components/movement_component.gd" id="7"]
+[ext_resource type="Script" path="res://scripts/entities/components/combat_component.gd" id="8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6761a"]
 radius = 7.5
