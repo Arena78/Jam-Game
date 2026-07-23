@@ -7,7 +7,6 @@ extends Area2D
 var parent: Node2D
 var active: bool = false
 var damage: float = 1.0
-## Array of effect dicts: {name: String, strength: float}
 var effects: Array = []
 
 

@@ -8,9 +8,8 @@ extends Resource
 enum SkillType {
 	BASIC_ATTACK,  # The default click-to-attack; 1-tick timer, small damage
 	DAMAGE,        # Deals damage; combines with other attacks on timer expiry
-	BUFF,          # Self-buff; wasted if no outgoing attack when timer expires
-	MOD,           # Modifies an outgoing attack; wasted if no attack when timer expires
-	UTIL,          # Utility effect; wasted if no outgoing attack when timer expires
+	BUFF,           # Modifies an outgoing attack; applies to self if no outgoing attack 
+	UTIL,          # Utility effect; applies to self if no outgoing attack 
 }
 
 @export var texture: Texture2D
