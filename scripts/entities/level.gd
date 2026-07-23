@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 func _on_enemy_killed(data: Dictionary) -> void:
 	# check if all enemies are dead
 	var enemies = get_tree().get_nodes_in_group("Enemy")
-	if enemies.size() == 0:
+	if enemies.size() <= 1:
 		EventBus.emit_event(EventBus.GAME_ROOM_CLEARED, {
 			"room": GameManager.current_room,
 		})

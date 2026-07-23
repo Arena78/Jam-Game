@@ -2,6 +2,8 @@
 # oversees the roguelike run lifecycle: room transitions, pause, game over.
 extends Node
 
+@onready var color_rect: ColorRect = $CanvasLayer/ColorRect
+
 ## Emitted when the run state changes.
 signal run_state_changed(new_state: String)
 
@@ -16,13 +18,19 @@ enum RunState {
 
 var current_run_state: RunState = RunState.MENU
 var current_room: int = 0
+var current_level: Node2D;
 var total_rooms_in_run: int = 0
 var is_paused: bool = false
 
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
+	
+	current_level = $level;
+	EventBus.subscribe(EventBus.GAME_ROOM_CLEARED, _on_room_cleared);
 
+func _process(delta: float) -> void:
+	pass
 
 ## Start a new game run.
 func start_run() -> void:
@@ -45,10 +53,11 @@ func end_run(victory: bool = false) -> void:
 
 ## Advance to the next room.
 func advance_room() -> void:
-	current_room += 1
-	_change_state(RunState.ROOM_TRANSITION)
-	# after transition, set back to playing
-	_change_state(RunState.PLAYING)
+	if(current_run_state != RunState.ROOM_TRANSITION):
+		current_room += 1
+		_change_state(RunState.ROOM_TRANSITION)
+		# after transition, set back to playing
+		#_change_state(RunState.PLAYING)
 
 
 ## Toggle pause state.
@@ -68,3 +77,41 @@ func _change_state(new_state: RunState) -> void:
 	is_paused = current_run_state == RunState.PAUSED
 	get_tree().paused = is_paused
 	run_state_changed.emit(RunState.keys()[new_state])
+	
+	match(new_state):
+		RunState.MENU:
+			pass
+		RunState.PLAYING:
+			pass
+		RunState.PAUSED:
+			pass
+		RunState.ROOM_TRANSITION:
+			runstate_room_transition();
+		RunState.GAME_OVER:
+			pass
+		RunState.VICTORY:
+			pass
+
+
+func runstate_room_transition():
+	var tween = create_tween();
+	tween.tween_property(color_rect, "color:a", 1.0, 1.0);
+	
+	await tween.finished;
+	
+	current_level.queue_free();
+	print(current_room)
+	var new_level = load("res://scenes/levels/level_" + str(current_room + 1) +".tscn").instantiate(); 
+	current_level = new_level;
+	add_child(new_level);
+	
+	tween = create_tween();
+	tween.tween_property(color_rect, "color:a", 0.0, 1.0);
+	
+	await tween.finished;
+	
+	_change_state(RunState.PLAYING)
+
+func _on_room_cleared(data: Dictionary):
+	
+	advance_room();
