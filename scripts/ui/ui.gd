@@ -4,6 +4,7 @@
 extends Control
 
 @onready var health_container: BoxContainer = $health_container
+@onready var enemies_left_label: Label = $"enemies left_label"
 @onready var skill_container: VBoxContainer = $skill_container
 
 # cached heart nodes
@@ -25,8 +26,10 @@ func _ready() -> void:
 	PlayerData.player_died.connect(_on_player_died)
 	PlayerData.skill_added.connect(_on_skill_added)
 
+	EventBus.subscribe(EventBus.ENEMY_KILLED, _on_enemy_killed);
 	# initial update
-	_update_all_hearts()
+	_update_all_hearts();
+	_on_enemy_killed({}, true);
 	
 	# Build skill icons for already-equipped skills
 	_refresh_all_skill_icons()
@@ -111,3 +114,9 @@ func _update_all_hearts() -> void:
 	for heart in _heart_nodes:
 		if heart.has_method("health_changed"):
 			heart.health_changed()
+
+func _on_enemy_killed(data: Dictionary, loading := false):
+	if(loading):
+		enemies_left_label.text = str(get_tree().get_nodes_in_group("Enemy").size());
+	else:
+		enemies_left_label.text = str(get_tree().get_nodes_in_group("Enemy").size() - 1);
