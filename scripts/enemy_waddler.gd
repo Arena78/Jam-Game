@@ -3,8 +3,10 @@ extends CharacterBody2D
 @export var initialDirection := Vector2(1.0, 0.0);
 @export var speed = 50.0;
 
-var direction = initialDirection;
+var direction = Vector2(1.0, 0.0);
 
+func _ready() -> void:
+	direction = initialDirection;
 
 func _physics_process(delta: float) -> void:
 
