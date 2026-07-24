@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bycsslfcog0wh" path="res://scenes/globals/ui.tscn" id="2_by607"]
 [ext_resource type="PackedScene" uid="uid://dgxavxmcy7m0f" path="res://scenes/levels/menu.tscn" id="3_cq3vi"]
 [ext_resource type="Script" uid="uid://c04qtxd53wsby" path="res://scripts/systems/CombatSystem.gd" id="4_j71hc"]
+[ext_resource type="AudioStream" uid="uid://8md8ejtytvvs" path="res://assets/game jam theme.wav" id="4_r6rm0"]
 
 [node name="GameMain" type="Node2D" unique_id=525167573]
 
@@ -19,3 +20,10 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="Menu" parent="CanvasLayer" unique_id=1313905390 instance=ExtResource("3_cq3vi")]
+
+[node name="combat_system" type="Node" parent="." unique_id=692649367]
+script = ExtResource("4_j71hc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1734675556]
+stream = ExtResource("4_r6rm0")
+autoplay = true

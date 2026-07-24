@@ -17,10 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+PlayerData="*res://scripts/data/PlayerData.gd"
 EventBus="*res://scripts/core/EventBus.gd"
 GameManager="*res://scripts/core/GameManager.gd"
 GameData="*res://scripts/data/GameData.gd"
-PlayerData="*res://scripts/data/PlayerData.gd"
 SkillSystem="*res://scripts/systems/SkillSystem.gd"
 CombatSystem="*res://scripts/systems/CombatSystem.gd"
 InventorySystem="*res://scripts/systems/InventorySystem.gd"
